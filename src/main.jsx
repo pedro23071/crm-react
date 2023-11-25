@@ -21,8 +21,7 @@ const router = createBrowserRouter([
                 element: <NuevoCliente />
             }
         ]
-    },
-    
+    },  
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
