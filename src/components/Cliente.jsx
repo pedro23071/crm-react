@@ -1,4 +1,11 @@
-import { useNavigate } from "react-router-dom"
+import { Form, useNavigate, useActionData, redirect } from "react-router-dom"
+import {deleteCliente} from '../data/clientes'
+
+export const action = async ({params}) => {
+    await deleteCliente(params.clienteId)
+    return redirect('/')
+}
+
 
 const Cliente = ({cliente}) => {
     const {nombre, telefono, email, empresa, id} = cliente
@@ -27,9 +34,19 @@ const Cliente = ({cliente}) => {
                     >
                     Editar
                 </button>
-                <button type="button" className="text-red-600 hover:text-red-700 uppercase font-bold text-xs">
-                    Eliminar
-                </button>
+                <Form 
+                    method="post"
+                    action={`/cliente/${id}/eliminar`}
+                    onSubmit={ e => {
+                        if(!confirm('Deseas eliminar este registro')){
+                            e.preventDefault
+                        }
+                    }}
+                >
+                    <button type="submit" className="text-red-600 hover:text-red-700 uppercase font-bold text-xs">
+                        Eliminar
+                    </button>
+                </Form>
             </td>
         </tr>
     )

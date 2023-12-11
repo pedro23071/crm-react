@@ -1,14 +1,6 @@
 {
   "clientes": [
     {
-      "nombre": "Juan (nuevo)",
-      "empresa": "Codigo Con Juan",
-      "email": "juan@juan.com",
-      "telefono": "102013313",
-      "notas": "test123456",
-      "id": 1
-    },
-    {
       "nombre": "Karen (nuevo)",
       "empresa": "Codigo Con Juan",
       "email": "karen@juan.com",

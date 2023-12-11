@@ -71,3 +71,20 @@ export const editCliente = async (id, data) => {
     }
 }
   
+export const deleteCliente = async (id) => {
+    try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/${id}`, {
+          method: 'DELETE'
+        });
+    
+        if (!response.ok) {
+          throw new Error(`Error en la solicitud: ${response.statusText}`);
+        }
+    
+        const responseData = await response.json();
+        return responseData;
+      } catch (error) {
+        console.error('Error en la solicitud:', error);
+        throw error; // Lanza el error para que pueda ser manejado externamente
+      }
+}
