@@ -5,7 +5,9 @@ import './index.css'
 
 import Layout from './components/layout'
 import NuevoCliente, {action as nuevoClienteAction } from './pages/NuevoCliente'
-import Index, {louder as clientesLouder} from './pages/Index'
+import Index, {loader as clientesLouder} from './pages/Index'
+import ErrorPage from './components/ErrorPage'
+import EditarCliente, {loader as editarClienteLouder, action as editarClienteAction} from './components/EditarCliente'
 
 const router = createBrowserRouter([
     {
@@ -15,12 +17,21 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <Index />,
-                loader: clientesLouder
+                loader: clientesLouder,
+                errorElement: <ErrorPage />
             },
             {
                 path: '/clientes/nuevo',
                 element: <NuevoCliente />,
-                action: nuevoClienteAction
+                action: nuevoClienteAction,
+                errorElement: <ErrorPage />
+            },
+            {
+                path: '/cliente/:clienteId/editar',
+                element: <EditarCliente />,
+                action: editarClienteAction,
+                loader: editarClienteLouder,
+                errorElement: <ErrorPage />
             }
         ]
     },  

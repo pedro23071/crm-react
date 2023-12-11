@@ -1,10 +1,20 @@
-import { useNavigate, Form, useActionData, redirect } from "react-router-dom"
+import {useLoaderData, Form, useNavigate, useActionData, redirect} from 'react-router-dom'
+import {getCliente, editCliente} from '../data/clientes'
 import Formulario from "../components/Formulario"
-import Index from "./Index";
-import Error from "../components/Error";
-import {createCliente} from '../data/clientes' 
+import Error from '../components/Error'
 
-export const action = async ({request}) => {
+export async function loader({params}){
+    const cliente = await getCliente(params.clienteId)
+    if(Object.values(cliente).length === 0){
+        throw new Response('', {
+            status: 404,
+            statusText: 'Cliente no encontrado'
+        })
+    }
+    return cliente
+} 
+
+export const action = async ({request, params}) => {
     const formData = await request.formData();
     const datos = Object.fromEntries(formData)
     const email = formData.get('email')
@@ -23,22 +33,21 @@ export const action = async ({request}) => {
         return errores
     }
 
-    await createCliente(datos)
+    //editar cliente
+    await editCliente(params.clienteId, datos)
     return redirect('/')
 }
 
-
-const NuevoCliente = () => {
+const EditarCliente = () => {
 
     const navigate = useNavigate()
+    const cliente = useLoaderData() 
     const errores = useActionData()
-
-    console.log(errores)
 
     return(
         <>
-            <h1 className="font-black text-4xl text-blue-900">Nuevo Cliente</h1>
-            <p className="mt-3">Registra un nuevo cliente</p>
+            <h1 className="font-black text-4xl text-blue-900">Editar Cliente</h1>
+            <p className="mt-3">A continuacion podras modificar los datos de un cliente</p>
 
             <div className="flex justify-end">
                 <button 
@@ -50,16 +59,15 @@ const NuevoCliente = () => {
             </div>
 
             <div className="bg-white shadow rounded-md md:w-3/4 mx-auto px-5 py-10 mt-20">
-
                 {errores?.length && errores.map((error, index) => <Error key={index}>{error}</Error>)}
                 <Form
                     noValidate
                     method="POST"
                 >
-                    <Formulario />
+                    <Formulario cliente={cliente}/>
                     <input 
                         type="submit" 
-                        value="Regsitrar Cliente" 
+                        value="Editar Cliente" 
                         className="mt-5 w-full bg-blue-800 p-3 hover:bg-blue-900 uppercase font-bold text-white text-lg"
                         />
                 </Form>
@@ -68,4 +76,4 @@ const NuevoCliente = () => {
     )
 }
 
-export default NuevoCliente
+export default EditarCliente

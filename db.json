@@ -1,0 +1,65 @@
+{
+  "clientes": [
+    {
+      "nombre": "Juan (nuevo)",
+      "empresa": "Codigo Con Juan",
+      "email": "juan@juan.com",
+      "telefono": "102013313",
+      "notas": "test123456",
+      "id": 1
+    },
+    {
+      "nombre": "Karen (nuevo)",
+      "empresa": "Codigo Con Juan",
+      "email": "karen@juan.com",
+      "telefono": "138198313",
+      "notas": "crear una API",
+      "id": 2
+    },
+    {
+      "id": 3,
+      "nombre": "Josue",
+      "telefono": 31983913,
+      "email": "josue@juan.com",
+      "empresa": "Codigo Con Juan"
+    },
+    {
+      "id": 4,
+      "nombre": "Miguel",
+      "telefono": 319381983,
+      "email": "miguel@juan.com",
+      "empresa": "Codigo Con Juan"
+    },
+    {
+      "id": 5,
+      "nombre": "Pedro",
+      "telefono": 1398198938,
+      "email": "pedro@juan.com",
+      "empresa": "Codigo Con Juan"
+    },
+    {
+      "nombre": "PEDRO ANTONIO",
+      "empresa": "sss",
+      "email": "pedro23071@gmail.com",
+      "telefono": "5568879021",
+      "notas": "test",
+      "id": 6
+    },
+    {
+      "nombre": "PEDRO ANTONIO",
+      "empresa": "sss",
+      "email": "pedro23071@gmail.com",
+      "telefono": "5568879021",
+      "notas": "ssss",
+      "id": 7
+    },
+    {
+      "nombre": "Test",
+      "empresa": "sss",
+      "email": "pedro23071@gmail.com",
+      "telefono": "5568879021",
+      "notas": "test",
+      "id": 8
+    }
+  ]
+}
